@@ -1,5 +1,6 @@
 require_relative 'config'
 require_relative '../app/models/teacher.rb'
+require_relative '../app/models/student.rb'
 require 'faker'
 
 def seed_teachers
@@ -10,4 +11,35 @@ def seed_teachers
   end
 end
 
-seed_teachers
+
+def seed_student
+  50.times do
+  Student.create :first_name => Faker::Name.first_name,
+                 :last_name  => Faker::Name.last_name,
+                 :email      => Faker::Internet.free_email,
+                 :phone      => Faker::PhoneNumber.phone_number,
+                 :birthday   => Date.today - rand(15..40)*365,
+                 :gender     => ['Male', 'Female'].sample
+  end
+end
+
+
+def seed_give_student_to_teacher
+  
+  num_teachers = Teacher.count
+
+  Student.all.each do |student|
+    student.teacher_id = (rand(num_teachers)+1)
+    student.save
+  end
+end
+
+
+
+
+
+# seed_give_student_to_teacher
+
+# seed_teachers
+
+# seed_student

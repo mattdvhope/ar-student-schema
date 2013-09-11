@@ -11,7 +11,10 @@ end
 class Teacher < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true, email: true
 
+  has_many :student_teachers, :foreign_key => :teacher_id
+  has_many :students, :through => :student_teachers
+
 end
 
 
-teacher = Teacher.create!(name: "New Teacher", email: "agustin.gsoyette@monahan.net", phone: "123.123.4567")
+# teacher = Teacher.create!(name: "New Teacher", email: "agustin.gsoyette@monahan.net", phone: "123.123.4567")

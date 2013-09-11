@@ -27,6 +27,9 @@ end
 
 class Student < ActiveRecord::Base
 
+  has_many :student_teachers, :foreign_key => :student_id
+  has_many :teachers, :through => :student_teachers
+
   validates :email, uniqueness: true, presence: true, email: true
   validates :birthday, presence: true, age: true
   validates :phone, presence: true, phone: true
