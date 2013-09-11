@@ -11,8 +11,8 @@ end
 class Teacher < ActiveRecord::Base
   validates :email, uniqueness: true, presence: true, email: true
 
-  has_many :student_teachers, :foreign_key => :teacher_id
-  has_many :students, :through => :student_teachers
+  has_many :students_teachers
+  has_many :students, :through => :students_teachers
 
 end
 

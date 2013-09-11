@@ -5,10 +5,7 @@ require_relative '../config'
 class JoinTeachers < ActiveRecord::Migration
   def change
     remove_column :students, :teacher_id
-    create_join_table :students, :teachers do |t|
-      t.index :student_id
-      t.index :teacher_id
-    end
+    create_join_table :students, :teachers
   end
 end
 

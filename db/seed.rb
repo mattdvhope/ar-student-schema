@@ -1,6 +1,8 @@
 require_relative 'config'
 require_relative '../app/models/teacher.rb'
 require_relative '../app/models/student.rb'
+require_relative '../app/models/students_teachers.rb'
+
 require 'faker'
 
 def seed_teachers
@@ -27,19 +29,23 @@ end
 def seed_give_student_to_teacher
   
   num_teachers = Teacher.count
+  num_students = Student.count
 
   Student.all.each do |student|
-    student.teacher_id = (rand(num_teachers)+1)
-    student.save
+    # student = Student.find(rand(num_students)+1)
+    teacher = Teacher.find(rand(num_teachers)+1)
+    
+    student.teachers << teacher
   end
+
 end
 
 
+# p StudentsTeacher.all
 
-
+# seed_teachers
+# seed_student
 
 # seed_give_student_to_teacher
 
-# seed_teachers
 
-# seed_student
